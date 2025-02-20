@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface MetaDataSeo extends Struct.ComponentSchema {
+  collectionName: 'components_meta_data_seos';
+  info: {
+    displayName: 'SEO';
+  };
+  attributes: {
+    Keywords: Schema.Attribute.String;
+    MetaDescription: Schema.Attribute.String;
+    MetaTitle: Schema.Attribute.String;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -65,6 +77,7 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'meta-data.seo': MetaDataSeo;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
