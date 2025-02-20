@@ -3,11 +3,12 @@ import type { Schema, Struct } from '@strapi/strapi';
 export interface MetaDataSeo extends Struct.ComponentSchema {
   collectionName: 'components_meta_data_seos';
   info: {
+    description: '';
     displayName: 'SEO';
   };
   attributes: {
     Keywords: Schema.Attribute.String;
-    MetaDescription: Schema.Attribute.String;
+    MetaDescription: Schema.Attribute.Text;
     MetaTitle: Schema.Attribute.String;
   };
 }

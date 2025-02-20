@@ -1,7 +1,8 @@
 {
   "collectionName": "components_meta_data_seos",
   "info": {
-    "displayName": "SEO"
+    "displayName": "SEO",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -9,7 +10,7 @@
       "type": "string"
     },
     "MetaDescription": {
-      "type": "string"
+      "type": "text"
     },
     "Keywords": {
       "type": "string"
