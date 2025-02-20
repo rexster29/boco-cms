@@ -1,30 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const CaseStudies = () => {
-  const cases = [
-    {
-      title: "E-commerce Redesign",
-      client: "Fashion Retailer",
-      description: "Complete redesign and development of a Shopify Plus store, resulting in 150% increase in conversion rate.",
-      image: "https://picsum.photos/800/600?random=1",
-      tags: ["Shopify Plus", "UI/UX", "Development"]
-    },
-    {
-      title: "Digital Transformation",
-      client: "Lifestyle Brand",
-      description: "Strategic digital transformation project including custom theme development and third-party integrations.",
-      image: "https://picsum.photos/800/600?random=2",
-      tags: ["Strategy", "Development", "Integration"]
-    },
-    {
-      title: "Brand Evolution",
-      client: "Wellness Company",
-      description: "End-to-end brand refresh and e-commerce platform development with custom features.",
-      image: "https://picsum.photos/800/600?random=3",
-      tags: ["Branding", "Development", "UI/UX"]
-    }
-  ];
+  const [cases, setCases] = useState([]);
+
+  useEffect(() => {
+    const fetchCases = async () => {
+      try {
+        const response = await fetch('http://localhost:1337/api/pages');
+        const data = await response.json();
+        setCases(data.data); // Assuming the API returns an array of services
+        console.log(data.data, "data-title");
+        // console.log(data.data, "data-title");
+      } catch (error) {
+        console.error('Error fetching services:', error);
+      }
+    };
+
+    fetchCases();
+  }, []);
+
+
+  // const cases = [
+  //   {
+  //     title: "E-commerce Redesign",
+  //     client: "Fashion Retailer",
+  //     description: "Complete redesign and development of a Shopify Plus store, resulting in 150% increase in conversion rate.",
+  //     image: "https://picsum.photos/800/600?random=1",
+  //     tags: ["Shopify Plus", "UI/UX", "Development"]
+  //   },
+  //   {
+  //     title: "Digital Transformation",
+  //     client: "Lifestyle Brand",
+  //     description: "Strategic digital transformation project including custom theme development and third-party integrations.",
+  //     image: "https://picsum.photos/800/600?random=2",
+  //     tags: ["Strategy", "Development", "Integration"]
+  //   },
+  //   {
+  //     title: "Brand Evolution",
+  //     client: "Wellness Company",
+  //     description: "End-to-end brand refresh and e-commerce platform development with custom features.",
+  //     image: "https://picsum.photos/800/600?random=3",
+  //     tags: ["Branding", "Development", "UI/UX"]
+  //   }
+  // ];
 
   return (
     <div className="min-h-screen bg-white py-20 px-4">

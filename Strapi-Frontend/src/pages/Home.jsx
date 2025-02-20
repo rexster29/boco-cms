@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch('http://localhost:1337/api/services');
+        const data = await response.json();
+        setServices(data.data); // Assuming the API returns an array of services
+        console.log(data);
+        // console.log(data.data, "data-title");
+      } catch (error) {
+        console.error('Error fetching services:', error);
+      }
+    };
+
+    fetchServices();
+  }, []);
+  
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -41,20 +59,22 @@ const Home = () => {
             Our Services
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-            {[
-              {
-                title: "Web Design",
-                description: "Creating stunning, conversion-focused designs that captivate your audience."
-              },
-              {
-                title: "Development",
-                description: "Building robust, scalable solutions with cutting-edge technology."
-              },
-              {
-                title: "Strategy",
-                description: "Crafting data-driven strategies to maximize your digital success."
-              }
-            ].map((service, index) => (
+            {
+            // [
+            //   {
+            //     title: "Web Design",
+            //     description: "Creating stunning, conversion-focused designs that captivate your audience."
+            //   },
+            //   {
+            //     title: "Development",
+            //     description: "Building robust, scalable solutions with cutting-edge technology."
+            //   },
+            //   {
+            //     title: "Strategy",
+            //     description: "Crafting data-driven strategies to maximize your digital success."
+            //   }
+            // ]
+            services.length > 0 && services.map((service, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}

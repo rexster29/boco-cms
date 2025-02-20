@@ -11,25 +11,39 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "Slug": {
+    "slug": {
       "type": "string",
-      "required": true
-    },
-    "SEO": {
-      "displayName": "SEO",
-      "type": "component",
-      "repeatable": false,
-      "component": "meta-data.seo"
+      "required": false
     },
     "sections": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::section.section",
       "inversedBy": "section"
+    },
+    "client": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "tags": {
+      "type": "json",
+      "required": true
     }
   }
 }
